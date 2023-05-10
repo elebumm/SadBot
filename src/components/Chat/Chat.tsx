@@ -53,7 +53,7 @@ const Chat: React.FC<Props> = ({
       mutation.mutate(chatHistory);
       setUserMessageAdded(false);
     }
-  }, [chatHistory]);
+  }, [chatHistory, userMessageAdded]);
 
   return (
     <>
