@@ -5,7 +5,7 @@ export interface OpenAIResponse {
 
 export const chatToBob = async (chatHistory: Array<OpenAIResponse | null>) => {
   console.log(chatHistory);
-  const response = await fetch("http://localhost:8000", {
+  const response = await fetch("https://sadbotai-production.up.railway.app/", {
     method: "POST",
     body: JSON.stringify({
       chat_history: chatHistory,
