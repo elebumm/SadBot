@@ -8,7 +8,7 @@ type Props = {
 
 const Message: React.FC<Props> = ({ chat }) => {
   if (chat === null) {
-    return "";
+    return <div></div>;
   } else if (chat.role === "user") {
     return <div className="message user">{chat.content}</div>;
   } else {

@@ -9,5 +9,5 @@ export default function useChatScroll<T>(
       ref.current.scrollTop = ref.current.scrollHeight;
     }
   }, [dep]);
-  return ref;
+  return ref as React.MutableRefObject<HTMLDivElement>;
 }

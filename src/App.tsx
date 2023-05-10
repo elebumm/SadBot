@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Grid from "@mui/material/Grid";
 import { Container } from "@mui/material";
 import Character from "./components/Character/Character";
 import "./App.css";
 import Chat from "./components/Chat/Chat";
-import { OpenAIResponse, chatToBob } from "./components/Chat/ChatAction";
-import { useMutation } from "react-query";
+import { OpenAIResponse } from "./components/Chat/ChatAction";
 
 export type Sentiment = "POSITIVE" | "NEGATIVE" | "NEUTRAL" | "MIXED";
 
@@ -15,10 +14,9 @@ function App() {
   const [chatHistory, setChatHistory] = useState<Array<OpenAIResponse | null>>(
     []
   );
+  const [userMessageAdded, setUserMessageAdded] = useState<boolean>(false);
   const [mood, setMood] = useState<Sentiment>("NEGATIVE");
   const [tip, setTip] = useState<string>("");
-
-  const userMessageAdded = useRef(false);
 
   return (
     <>
@@ -34,6 +32,7 @@ function App() {
               setValue={setValue}
               textInput={textInput}
               userMessageAdded={userMessageAdded}
+              setUserMessageAdded={setUserMessageAdded}
               setMood={setMood}
               setTip={setTip}
             />

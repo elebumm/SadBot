@@ -14,19 +14,19 @@ type GLTFResult = GLTF & {
   };
 };
 
-type ActionName =
-  | "Armature|mixamo.com|Layer0"
-  | "excited"
-  | "laughing"
-  | "sad"
-  | "shrug"
-  | "shrug.001"
-  | "thinking.001";
-type GLTFActions = Record<ActionName, THREE.AnimationAction>;
+// type ActionName =
+//   | "Armature|mixamo.com|Layer0"
+//   | "excited"
+//   | "laughing"
+//   | "sad"
+//   | "shrug"
+//   | "shrug.001"
+//   | "thinking.001";
+// type GLTFActions = Record<ActionName, THREE.AnimationAction>;
 
-export default function Model(props: JSX.IntrinsicElements["group"]) {
+export default function Model(props: any) {
   const group = useRef<THREE.Group>();
-  const theModel = useRef<THREE.SkinnedMesh>();
+  const theModel = useRef<any>();
   const { nodes, materials, animations } = useGLTF(
     "/sadrobot.gltf"
   ) as GLTFResult;
@@ -69,6 +69,13 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
 
   React.useEffect(() => {
     mixer.stopAllAction();
+    if (
+      !actions.sad ||
+      !actions.excited ||
+      !actions["shrug.001"] ||
+      !actions["thinking.001"]
+    )
+      return;
     if (props.mood === "NEGATIVE") {
       actions.sad.play();
     } else if (props.mood === "POSITIVE") {
@@ -78,7 +85,7 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
     } else if (props.mood === "MIXED") {
       actions["thinking.001"].play();
     }
-  }, [props.mood]);
+  }, [props.mood, actions, mixer]);
 
   return (
     <group ref={group} {...props} dispose={null}>
@@ -90,6 +97,7 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
           scale={0.01}
         >
           <primitive object={nodes.mixamorigHips} />
+
           <skinnedMesh
             ref={theModel}
             name="Object_7001"

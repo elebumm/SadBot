@@ -1,6 +1,5 @@
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import React, { useState, useEffect, Suspense } from "react";
-import { GLTF, GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+import { Canvas } from "@react-three/fiber";
+import React, { Suspense } from "react";
 import Model from "./SadRobot/SadRobot";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { Sentiment } from "../../App";

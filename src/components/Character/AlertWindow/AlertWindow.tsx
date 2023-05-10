@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Collapse } from "@mui/material";
+import { Collapse } from "@mui/material";
 import React from "react";
 import { Sentiment } from "../../../App";
 import "./AlertWindow.css";

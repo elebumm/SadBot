@@ -1,6 +1,6 @@
 import React, { Ref } from "react";
 import "./Chat.css";
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
 import { useMutation } from "react-query";
 import { OpenAIResponse, chatToBob } from "./ChatAction";
@@ -16,7 +16,8 @@ interface Props {
   value: string;
   setValue: (value: string) => void;
   textInput: Ref<HTMLInputElement>;
-  userMessageAdded: Ref<boolean>;
+  userMessageAdded: boolean;
+  setUserMessageAdded: (value: boolean) => void;
   setMood: (mood: Sentiment) => void;
   setTip: (value: string) => void;
 }
@@ -29,6 +30,7 @@ const Chat: React.FC<Props> = ({
   textInput,
   userMessageAdded,
   setMood,
+  setUserMessageAdded,
   setTip,
 }) => {
   // const textInput = React.useRef<HTMLInputElement>(null);
@@ -42,14 +44,14 @@ const Chat: React.FC<Props> = ({
       setChatHistory([...chatHistory, data["message"]]);
       setMood(data["sentiment"] as Sentiment);
       setTip(data["tip"] as string);
-      textInput.current?.focus();
+      // textInput.current?.focus();
     },
   });
 
   React.useEffect(() => {
-    if (userMessageAdded.current) {
+    if (userMessageAdded) {
       mutation.mutate(chatHistory);
-      userMessageAdded.current = false;
+      setUserMessageAdded(false);
     }
   }, [chatHistory]);
 
@@ -70,7 +72,9 @@ const Chat: React.FC<Props> = ({
             if (value === "") return;
             setMood("MIXED");
             setChatHistory([...chatHistory, { role: "user", content: value }]);
-            userMessageAdded.current = true;
+            if (userMessageAdded) {
+              setUserMessageAdded(true);
+            }
             setValue("");
             setTip("");
           }}
