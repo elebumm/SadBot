@@ -50,6 +50,7 @@ const Chat: React.FC<Props> = ({
 
   React.useEffect(() => {
     if (userMessageAdded) {
+      console.log("Hi");
       mutation.mutate(chatHistory);
       setUserMessageAdded(false);
     }
@@ -72,9 +73,9 @@ const Chat: React.FC<Props> = ({
             if (value === "") return;
             setMood("MIXED");
             setChatHistory([...chatHistory, { role: "user", content: value }]);
-            if (userMessageAdded) {
-              setUserMessageAdded(true);
-            }
+
+            setUserMessageAdded(true);
+
             setValue("");
             setTip("");
           }}
