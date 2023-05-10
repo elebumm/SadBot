@@ -1,0 +1,18 @@
+body {
+  background: rgb(122, 115, 255);
+  background: radial-gradient(
+    circle,
+    rgba(122, 115, 255, 1) 0%,
+    rgba(19, 210, 246, 1) 51%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+h1 {
+  color: #fff;
+  font-size: 3rem;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  margin-bottom: 50px;
+}

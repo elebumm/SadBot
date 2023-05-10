@@ -1,0 +1,19 @@
+.user {
+  padding: 10px;
+  background: #539165;
+  width: 40%;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.bob {
+  padding: 10px;
+  background: #434242;
+  width: 40%;
+  margin-left: 58%;
+}
+
+.message {
+  color: white;
+  border-radius: 10px;
+}
